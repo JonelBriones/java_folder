@@ -6,8 +6,8 @@ import java.util.ArrayList;
 public class BankAccount {
     private double checkingBalance;
     private double savingBalance;
-    private static int numberOfAccounts = 0;
-    private static double totalAmount = 0;
+    public static int numberOfAccounts = 0;
+    public static double totalAmount = 0;
 //class member    
     
     public BankAccount(double checkingBalanceParam, double savingBalanceParam) {
@@ -27,45 +27,50 @@ public class BankAccount {
     }
 
     // get methods
-    public double getCheckingBalance() {
-        System.out.println(checkingBalance);
+    public double getBalance(String account) {
+        if (account == "Checking") {
+            System.out.println(checkingBalance);
         return checkingBalance;
-    }
-    public double getSavingBalance() {
-        System.out.println(savingBalance);
+        }
+        else {
+            System.out.println(savingBalance);
         return savingBalance;
+        }
+        
+    }
+    public void deposit(double amount, String account) {
+        if (account == "Checking") {
+            System.out.printf("Adding $%s,\nNew Checking Balance: $%s \n",amount,(checkingBalance + amount));
+        checkingBalance += amount; 
+        }
+        else {
+            System.out.printf("Adding $%s,\nNew Saving Balance: $%s \n",amount,(savingBalance + amount));
+        savingBalance += amount; 
+        }
     }
 
-    public double depositChecking(double amount) {
-        System.out.printf("Adding $%s,\nChecking Balance: $%s \n",amount,(checkingBalance + amount));
-        checkingBalance =  checkingBalance + amount;
-        return checkingBalance;
-        
-    }
-    public double depositSaving(double amount) {
-        System.out.printf("Adding $%s,\nSaving Balance: $%s \n",amount,(savingBalance + amount));
-        savingBalance =  savingBalance + amount;
-        return savingBalance;
-        
-    }
-    public void withdrawChecking(double amount) {
-        if (amount > checkingBalance) {
-            System.out.println("Insufficient Funds");
+    public void withdraw(double amount, String account) {
+        if (account == "Checking") {
+            if (amount > checkingBalance) {
+                System.out.println("Insufficient Funds");
+            }
+            else {
+                checkingBalance -= amount;
+                System.out.printf("Withdraw Amount: $%s\nNew Checking Balance: $%s\n", amount,checkingBalance);
+            }
         }
         else {
-            checkingBalance = checkingBalance - amount;
-            System.out.printf("Withdraw Amount: $%s\nNew Checking Balance: $%s\n", amount,checkingBalance);
+            if (amount > savingBalance) {
+                System.out.println("Insufficient Funds");
+            }
+            else {
+                savingBalance -= amount;
+                System.out.printf("Withdraw Amount: $%s\nNew Saving Balance: $%s\n", amount,savingBalance);
+            }
         }
+        
     }
-    public void withdrawSaving(double amount) {
-        if (amount > savingBalance) {
-            System.out.println("Insufficient Funds");
-        }
-        else {
-            savingBalance = savingBalance - amount;
-            System.out.printf("Withdraw Amount: $%s\nNew Saving Balance: $%s\n", amount,savingBalance);
-        }
-    }
+
 
 }
 
