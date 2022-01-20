@@ -6,19 +6,36 @@ public class OrderTest {
     public static void main(String[] args) {
         
         // Menu items
-        Item item1 = new Item("Mocha", 3.5);
-        Item item2 = new Item("Drop Coffee", 2.5);
-        Item item3 = new Item("Latte", 2.5);
-        Item item4 = new Item("Cappuchino", 2.5);
+        Item item1 = new Item("Mocha",3.5);
+        String item1Name = item1.getName();
+        double item1Price = item1.getPrice();
+        
+        Item item2 = new Item("Drip Coffee",2.15);
+        String item2Name = item2.getName();
+        double item2Price = item2.getPrice();
+        Item item3 = new Item("Latte",4.5);
+        Item item4 = new Item("Cappuchino",3.5);
 
         // Order variables 
         // add member variables add()
         Order order1 = new Order();
+        String order1Name = order1.getName();
+        System.out.println("Customer Name: " + order1Name);
+
+  
         Order order2 = new Order();
 
         Order order3 = new Order();
-        order3.customer("Cindhuri");
-        order3.setName();
+        order3.setName("Cindhuri");
+        String order3Name = order3.getName();
+        System.out.println("Customer: " + order3Name);
+        order3.addItem(item1);
+        System.out.println(item1Name + " - " + item1Price);
+        System.out.println(item2Name + " - " + item2Price);
+        order3.addItem(item2);
+        
+ 
+
         Order order4 = new Order("Jimmy");
         Order order5 = new Order("Noah");
  
