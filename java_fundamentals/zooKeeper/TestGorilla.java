@@ -1,4 +1,4 @@
-class TestZooKeeper {
+class TestGorilla {
     public static void main(String[] args) {
         //object instantiation, passing in a parameter,
         Gorilla energy = new Gorilla(100); // 100 will be the default energy lv for gorilla
