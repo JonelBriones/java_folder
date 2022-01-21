@@ -1,3 +1,3 @@
 # java_folder
 
-*ALL WORK IN MAIN BRANCH*
+*ALL WORK IN MASTER BRANCH*
