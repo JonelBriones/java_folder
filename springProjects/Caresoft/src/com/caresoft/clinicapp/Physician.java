@@ -26,6 +26,7 @@ public class Physician extends User implements HIPAACompliantUser {
         report += String.format("Patient Name: %s\n", patientName);
         report += String.format("Notes: %s \n", notes);
         this.patientNotes.add(report);
+        
     }
 
 	@Override
@@ -40,7 +41,7 @@ public class Physician extends User implements HIPAACompliantUser {
 		}
 		
 	}
-
+	// Something wrong here need to fix
 	@Override
 	public boolean accessAuthorized(Integer confirmedAuthID) {
 		// TODO Auto-generated method stub

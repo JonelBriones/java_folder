@@ -49,15 +49,16 @@ public class AdminUser extends User implements HIPAACompliantUser, HIPAAComplian
 			return false;
 		} 
 		else {
+			
 			return true;
 		}
 		
-		
+		// Something wrong here need to fix
 	}
 	@Override
 	public boolean accessAuthorized(Integer confirmedAuthID) {
 		// TODO Auto-generated method stub
-		if(confirmedAuthID != pin) {
+		if(confirmedAuthID != id) {
 			authIncident();
 			return false;
 		}
