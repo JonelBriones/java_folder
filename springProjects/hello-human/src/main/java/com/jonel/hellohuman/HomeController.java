@@ -18,4 +18,5 @@ public class HomeController {
 	public String name(@RequestParam(value="name", required=false) String firstName,@RequestParam(value="last_name", required=false) String lastName) {
 		return "Hello " + firstName + " " + lastName;
 	}
+
 }
