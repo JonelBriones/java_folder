@@ -9,25 +9,36 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class MainController {
+	
+	@GetMapping("/")
+	public String home() {
+		return "redirect:/your_server";
+	}
 	@GetMapping("/your_server")
 	public String index(HttpSession session) {
-//		if (session.getAttribute("count") == null);
 		if (session.getAttribute("count") == null) {
 			// Use setAttribute to initialize the count in session
-			session.setAttribute("count", 0);
-			}
-			else {
-				Integer count = (Integer) session.getAttribute("count");
-				count++;
-			// increment the count by 1 using getAttribute and setAttribute
+			int count = 0;
+			session.setAttribute("count", count);
+		} else {
+			int count = (int) session.getAttribute("count");
+			count++;
+			session.setAttribute("count", count);
 			}
 		return "index.jsp";
 	}
 	@GetMapping("/your_server/counter")
 	public String counter(HttpSession session, Model model) {
-		Integer currentCount = (Integer) session.getAttribute("count");
-		model.addAttribute("countToShow", currentCount);
+		if (session.getAttribute("count") == null) {
+			// Use setAttribute to initialize the count in session
+			return "redirect:/your_server";
+		} else {
+			int count = (int) session.getAttribute("count");
+		model.addAttribute("count", count);
+		System.out.print(count);
 		return "showCount.jsp";
+		}
+		
 	}
 	@GetMapping("/your_server/reset")
 	public String reset(HttpSession session) {

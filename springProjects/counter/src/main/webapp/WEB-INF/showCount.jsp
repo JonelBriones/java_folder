@@ -8,7 +8,7 @@
 <title>Counter Show</title>
 </head>
 <body>
-	<h1>You have visited this site <c:out value="${countToShow}"/>times</h1>
+	<h1>You have visited http://your_server <c:out value="${count}"/> times</h1>
 	<a href="/your_server">Test another visit?</a> 
 
 </body>
