@@ -19,14 +19,14 @@ public class HomeController {
 	public HomeController(BookService bookService) {
 		this.bookService = bookService;
 	}
-	@GetMapping("/api/books/{id}")
+	@GetMapping("/books/show/{id}")
 	public String home(Model model, @PathVariable("id") Long id) {
 		System.out.println(id);
 		Book book = bookService.findBook(id);
 		System.out.println(book);
 		
 		model.addAttribute("book", book);
-		return "index.jsp";
+		return "show.jsp";
 	}
 	@RequestMapping("/books")
 	public String index(Model model) {
@@ -34,4 +34,6 @@ public class HomeController {
 		model.addAttribute("books", books);
 		return "books.jsp";
 	}
+	
+
 }

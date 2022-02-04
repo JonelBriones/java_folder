@@ -41,7 +41,7 @@ public class Book {
     private Date updatedAt;
     
    
-    
+    // getters and setters for all entity
     public Long getId() {
 		return id;
 	}
