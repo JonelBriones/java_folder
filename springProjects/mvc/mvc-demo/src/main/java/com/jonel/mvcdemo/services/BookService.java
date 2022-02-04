@@ -36,5 +36,12 @@ public class BookService {
          return null;
      }
  }
+public void deleteBook(Long id) {
+	// TODO Auto-generated method stub
+	bookRepository.deleteById(id);
+ }
+//public Book updateBook(Long id, String title, String desc, String lang, Integer numOfPages) {
+//	return bookRepository.save(title,desc,lang,numOfPages);
+//	}
 }
 
