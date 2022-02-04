@@ -27,10 +27,14 @@ public class BooksApi {
         Book book = new Book(title, desc, lang, numOfPages);
         return bookService.createBook(book);
     }
-    
+
     @RequestMapping("/api/books/{id}")
     public Book show(@PathVariable("id") Long id) {
         Book book = bookService.findBook(id);
         return book;
+    }
+    @RequestMapping("api/book/delete/{id}")
+    public void delete(@PathVariable("id") Long id) {
+    	bookService.deleteBook(id);
     }
 }
