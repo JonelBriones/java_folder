@@ -33,10 +33,10 @@ public class ExpenseApi {
 //     return expense;
 // }
  
-// @RequestMapping(value="/api/books/{id}", method=RequestMethod.DELETE)
-// public void destroy(@PathVariable("id") Long id) {
-//     bookService.deleteBook(id);
-// }
+ @RequestMapping(value="/expense/delete/{id}", method=RequestMethod.DELETE)
+ public void destroy(@PathVariable("id") Long id) {
+     expenseService.deleteExpense(id);
+ }
 }
 
 

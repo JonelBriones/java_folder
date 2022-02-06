@@ -13,7 +13,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Safe Travels</title>
 </head>
 <body>
 	<h1>Safe Travels</h1>
@@ -30,11 +30,12 @@
 		<tbody>
 			<c:forEach var="oneExpense" items="${expenses}">
 				<tr>
-					<td><c:out value="${oneExpense.item}"/></td>
+					<td><a href="/expenses/show/<c:out value="${oneExpense.id}"/>"><c:out value="${oneExpense.item}"/></a></td>
 					<td><c:out value="${oneExpense.vendor}"/></td>
 					<td>$<c:out value="${oneExpense.amount}"/></td>
 					<td><c:out value="${oneExpense.description}"/></td>
 					<td><a href="/expense/edit/<c:out value="${oneExpense.id}"/>">Edit</a></td>
+					<td><a href="/expense/delete/<c:out value="${oneExpense.id}"/>">Delete</a></td>
 				</tr>
 			</c:forEach> 		
 		</tbody>	

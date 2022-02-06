@@ -36,9 +36,9 @@ public class ExpenseService {
          return null;
      }
  }
-//public Expense updateExpense(String item, String vendor, int amount, String description) {
-//	// TODO Auto-generated method stub
-//	return null;
-//}
+
+  public void deleteExpense(Long id) {
+	  expenseRepository.deleteById(id);
+  }
 
 }
