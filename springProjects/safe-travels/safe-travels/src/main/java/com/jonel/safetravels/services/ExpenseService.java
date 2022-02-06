@@ -23,6 +23,10 @@ public class ExpenseService {
  public Expense createExpense(Expense b) {
      return expenseRepository.save(b);
  }
+ public Expense updateExpense(Expense b) {
+     return expenseRepository.save(b);
+ }
+
  // retrieves a book
  public Expense findExpense(Long id) {
      Optional<Expense> optionalExpense = expenseRepository.findById(id);
@@ -32,4 +36,9 @@ public class ExpenseService {
          return null;
      }
  }
+//public Expense updateExpense(String item, String vendor, int amount, String description) {
+//	// TODO Auto-generated method stub
+//	return null;
+//}
+
 }

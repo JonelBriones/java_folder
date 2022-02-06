@@ -1,3 +1,4 @@
+<%@ page isErrorPage="true" %>  
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!-- c:out ; c:forEach etc. --> 
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -8,7 +9,7 @@
 <!-- for rendering errors on PUT routes -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- c:forEach -->
-<%@ page isErrorPage="true" %>   
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,8 +17,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Add an Expense</h1>
-	<form:form action="/expenses/new" method="post" modelAttribute="expense">
+		<h1>Update Expense</h1>
+		<a href="/expenses/show">Go back</a>
+	<form:form action="/expense/update" method="post" modelAttribute="expense">
+		<input type="hidden" name="id" value="<c:out value="${expense.id}"/>">
 	    <p>
 	        <form:label path="item">Item</form:label>
 	        <form:errors path="item"/>
@@ -39,8 +42,8 @@
 	        <form:textarea path="description"/>
 	    </p>    
 	    <input type="submit" value="Submit"/>
-	</form:form>    
+	</form:form>     
 
-	
+
 </body>
 </html>
