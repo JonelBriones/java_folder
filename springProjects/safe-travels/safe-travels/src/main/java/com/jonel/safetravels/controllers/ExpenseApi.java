@@ -27,12 +27,7 @@ public class ExpenseApi {
 	 Expense expense = new Expense(item, vendor, amount, desc);
      return expenseService.createExpense(expense);
  }
-// @RequestMapping(value="/expenses/update/{id}", method=RequestMethod.PUT)
-// public Expense updateExpense(@PathVariable("id") Long id, @RequestParam(value="item") String item, @RequestParam(value="vendor") String vendor,@RequestParam(value="amount") int amount,@RequestParam(value="description") String description) {
-//     Expense expense = expenseService.update(item, vendor, amount, description);
-//     return expense;
-// }
- 
+
  @RequestMapping(value="/expense/delete/{id}", method=RequestMethod.DELETE)
  public void destroy(@PathVariable("id") Long id) {
      expenseService.deleteExpense(id);
