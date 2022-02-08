@@ -18,6 +18,7 @@
     <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
+	<a href="/dojo">Go Back</a>
    <h1>New Ninja</h1>
 	<form:form action="/ninja/create" method="post" modelAttribute="ninja">
 		   	<!--- inside the form:form --->

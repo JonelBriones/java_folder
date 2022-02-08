@@ -30,15 +30,18 @@ public class DojoController {
 	@Autowired
 	private NinjaService ninjaService;
    
+	// Redirect to dojo 
+	
 	@GetMapping("/")
 	public String index() {
 		return "redirect:/dojo";
 	}
 	
 	// DOJO CREATE
+	
     @GetMapping("/dojo")
     public String newDojo(@ModelAttribute("dojo") Dojo dojo,Model model) {
-    	model.addAttribute("dojos", dojoService.all());
+    	model.addAttribute("dojos", dojoService.all()); // will retrieve all dojo data
     	return "createDojo.jsp";
     }
     
@@ -47,7 +50,7 @@ public class DojoController {
     @PostMapping("/dojo/create")
     public String createDojo(@Valid @ModelAttribute("dojo") Dojo dojo, BindingResult result, Model model) {
         if (result.hasErrors()) {
-        	model.addAttribute("dojos", dojoService.all());
+        	model.addAttribute("dojos", dojoService.all()); // this will continue the data for dojos after updating if has error
             return "createDojo.jsp";
         } else {
             dojoService.create(dojo);
@@ -59,7 +62,7 @@ public class DojoController {
     
     @GetMapping("/ninja")
     public String newNinja(@ModelAttribute("ninja") Ninja ninja, Model model) {
-    	model.addAttribute("dojos", dojoService.all());
+    	model.addAttribute("dojos", dojoService.all()); // this brings the data into the form:select
     	return "createNinja.jsp";
     }
     
@@ -74,33 +77,34 @@ public class DojoController {
             return "redirect:/dojo";
         }
     }
+    
+    // Display One dojo with only ninjas if dojo_id == dojo.id
     @GetMapping("/dojo/{id}")
     public String showDojos(@PathVariable("id") Long id,Model model) {
-    	model.addAttribute("dojo", dojoService.findId(id));
-//    	model.addAttribute("ninjas", ninjaService.findId(id));
+    	model.addAttribute("dojo", dojoService.findId(id)); //using dojo.ninja.(data)
     	return "showDojo.jsp";
     	
     }
 
 
 
-    
-    // UPDATE DATA FROM ID
-    @PutMapping("/languages/update")
-    public String updating(@Valid @ModelAttribute("language") Dojo dojo, BindingResult result) {
-        if (result.hasErrors()) {
-            return "index.jsp";
-        } else {
-            dojoService.update(dojo);
-            return "redirect:/languages/show";
-        }
-    }
-    
-    // DELETE DATA
-	@DeleteMapping("/language/delete/{id}")
-	public String delete(@PathVariable("id") Long id) {
-		dojoService.delete(id);
-		return "redirect:/languages/show";
-	}
+// Was not used
+//    // UPDATE DATA FROM ID
+//    @PutMapping("/languages/update")
+//    public String updating(@Valid @ModelAttribute("language") Dojo dojo, BindingResult result) {
+//        if (result.hasErrors()) {
+//            return "index.jsp";
+//        } else {
+//            dojoService.update(dojo);
+//            return "redirect:/languages/show";
+//        }
+//    }
+//    
+//    // DELETE DATA
+//	@DeleteMapping("/language/delete/{id}")
+//	public String delete(@PathVariable("id") Long id) {
+//		dojoService.delete(id);
+//		return "redirect:/languages/show";
+//	}
 
 }

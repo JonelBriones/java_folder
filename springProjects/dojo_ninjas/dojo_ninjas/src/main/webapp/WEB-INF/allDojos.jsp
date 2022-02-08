@@ -17,33 +17,27 @@
     <script src="/webjars/jquery/jquery.min.js"></script>
     <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
-<body>
- 	 <h1><c:out value="${dojo.name}"/></h1>
-
- 
+	<body>
+   <h1>DOJO</h1>
 	<table class="table">
     <thead class="thead-dark">
-        	<tr>
-				<td>First Name</td>
-				<td>Last Name</td>
-				<td>Age</td>
-        	</tr>
-    	</thead>
-    	<tbody>
-	        <c:forEach var="ninja" items="${ninjas}">
-	        <tr>
-	        	<td>
-	                <c:out value="${ninja.name}"/>
-	            </td>
-	            <td>
-	                <c:out value="${ninja.lastName}"/>
-	            </td>
-	            <td>
-	                <c:out value="${ninja.age}"/>
-	            </td>
-	        </tr>
-	        </c:forEach>
-    	</tbody>
-	</table>
+        <tr>
+            <th>Dojo</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Age</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <c:out value="${dojo.name}"/>
+            </td>
+            <td><c:out value="${dojo.ninja.name}"/></td>
+            <td><c:out value="${dojo.ninja.lastName}"/></td>
+            <td><c:out value="${dojo.ninja.age}"/></td>
+        </tr>
+    </tbody>
+</table>
 </body>
 </html>
