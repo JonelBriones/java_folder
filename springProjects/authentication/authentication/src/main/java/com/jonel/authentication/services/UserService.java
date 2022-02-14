@@ -1,6 +1,7 @@
 package com.jonel.authentication.services;
 
 
+import java.util.List;
 import java.util.Optional;
 
 import org.mindrot.jbcrypt.BCrypt;
@@ -8,15 +9,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
-import com.jonel.authentication.models.LoginUser;
+import com.jonel.authentication.models.Book;
 import com.jonel.authentication.models.User;
+import com.jonel.authentication.repositories.BookRepository;
 import com.jonel.authentication.repositories.UserRepository;
 
 
 @Service
 public class UserService {
     
-    @Autowired //auto injecting repository
+	@Autowired //auto injecting repository
     private UserRepository userRepo;
     // register/create a user from submitting user form
     // TO-DO: Write register and login methods!
@@ -58,5 +60,10 @@ public class UserService {
 	    	}
     	}
     }
+    
+    public List<User> all() {
+        return userRepo.findAll();
+    }
+   
 }
 

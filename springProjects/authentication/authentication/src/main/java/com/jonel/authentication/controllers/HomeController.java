@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.jonel.authentication.models.Book;
 import com.jonel.authentication.models.LoginUser;
 import com.jonel.authentication.models.User;
+import com.jonel.authentication.services.BookService;
 import com.jonel.authentication.services.UserService;
 //import com.jonel.authentication.validator.UserValidator;
 
@@ -26,6 +28,9 @@ public class HomeController {
  // Add once service is implemented:
  @Autowired
  private UserService userService;
+ 
+ @Autowired
+ private BookService bookService;
  
 // @Autowired
 // private UserValidator userValidator;
@@ -54,17 +59,17 @@ public class HomeController {
      	return "index.jsp";
      }      
      
-//	 if (!newUser.getPassword().equals(newUser.getConfirm())) {
-//		result.rejectValue("confirm", "Matches", "Password must match!");
-//   	 	model.addAttribute("newLogin", new LoginUser());
-//		return "index.jsp";
-//	 }
-//
-//	 if(userService.findByEmail(newUser.getEmail()) != null) {
-//			result.rejectValue("email", "Match", "Email is already taken!");
-//	   	 	model.addAttribute("newLogin", new LoginUser());
-//			return "index.jsp";
-//	 }
+	 if (!newUser.getPassword().equals(newUser.getConfirm())) {
+		result.rejectValue("confirm", "Matches", "Password must match!");
+   	 	model.addAttribute("newLogin", new LoginUser());
+		return "index.jsp";
+	 }
+
+	 if(userService.findByEmail(newUser.getEmail()) != null) {
+			result.rejectValue("email", "Match", "Email is already taken!");
+	   	 	model.addAttribute("newLogin", new LoginUser());
+			return "index.jsp";
+	 }
      User user = userService.register(newUser,result);
      session.setAttribute("userId", user.getId());
      
@@ -86,8 +91,8 @@ public class HomeController {
      // User user = userServ.login(newLogin, result);
  
      if(userService.authenticate(email, password)) {
-         User user = userService.findByEmail(email);
-         session.setAttribute("userId", user.getId());
+         User userId = userService.findByEmail(email);
+         session.setAttribute("userId", userId.getId());
          return "redirect:/home";
      }
      else {
@@ -97,17 +102,36 @@ public class HomeController {
      }
  }
  
-	 @GetMapping("/home")
-	 public String home(Model model, HttpSession session) {
-		 if(session.getAttribute("userId")!=null) {
-			 User user = userService.findUserById((Long)session.getAttribute("userId"));
-			 model.addAttribute("user",user);
-			 return "home.jsp";
-		 }
-		 else {
-			 return "redirect:/";
-		 }
-	 }
+
+//	@GetMapping("/add/{user_id}")
+//	public String add(@ModelAttribute("newBook") Book book, HttpSession session, Model model) {
+//		 if(session.getAttribute("userId")!=null) {
+//			 User user = userService.findUserById((Long)session.getAttribute("userId"));
+//			 model.addAttribute("user",user);
+//			 	return "addBook.jsp";
+//		 }
+//		 else {
+//			 return "redirect:/";
+//		 }
+//	}
+//	
+//	
+//@PostMapping("/add/book")
+//public String addBook(@Valid @ModelAttribute("newBook") Book book, BindingResult result) {
+//	 if (result.hasErrors() ) {
+//		 return "addBook.jsp";
+//	 }
+//	 else {
+//		 bookService.create(book);
+//		 return "redirect:/home";
+//	 }
+//}
+	
+		 
+		 
+		 
+		 
+	 
 	 @GetMapping("/logout")
 	 public String logout(HttpSession session) {
 		 session.invalidate();
