@@ -68,6 +68,19 @@ public class BookController {
 		 }
 	}
 	
+	@GetMapping("/show/{user_id}")
+	public String add(@PathVariable("user_id") Long id, HttpSession session, Model model) {
+		 if(session.getAttribute("userId")!=null) {
+			 User userId = userService.findUserById((Long)session.getAttribute("userId"));
+			 model.addAttribute("user",userId);
+			 model.addAttribute("book", bookService.findId(id));
+			 	return "show.jsp";
+		 }
+		 else {
+			 return "redirect:/";
+		 }
+	}
+	
 //@PostMapping("/add/book")
 //public String addBook(@Valid @ModelAttribute("newBook") Book book, BindingResult result) {
 //	 if (result.hasErrors() ) {
