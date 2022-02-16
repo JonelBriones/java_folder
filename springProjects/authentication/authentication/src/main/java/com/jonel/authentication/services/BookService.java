@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.jonel.authentication.models.Book;
+import com.jonel.authentication.models.User;
 import com.jonel.authentication.repositories.BookRepository;
 
 
@@ -21,6 +22,7 @@ public class BookService {
     public List<Book> all() {
         return bookRepo.findAll();
     }
+    
     // creates a book
     public Book create(Book b) {
         return bookRepo.save(b);
@@ -29,6 +31,8 @@ public class BookService {
     public Book update(Book b) {
         return bookRepo.save(b);
     }
+    
+
     
     // retrieves a book by id
     public Book findId(Long id) {
@@ -39,6 +43,18 @@ public class BookService {
             return null;
         }
     }
+    
+    public void borrowBook(Book book, User user) {
+    	List<User> borrows = book.getBorrows();
+    	borrows.add(user);
+    	bookRepo.save(book);
+    }
+    public void returnBook(Book book, User user) {
+    	List<User> borrows = book.getBorrows();
+    	borrows.remove(user);
+    	bookRepo.save(book);
+    }
+    
    // deletes a book
      public void delete(Long id) {
     	 bookRepo.deleteById(id);

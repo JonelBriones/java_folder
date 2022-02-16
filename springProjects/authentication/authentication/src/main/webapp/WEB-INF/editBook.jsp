@@ -12,20 +12,21 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Add Book</title>
+<title>Edit Book</title>
 </head>
 <body>  
 	<h1><c:out value="${user.userName }"/></h1>
 	<a href="/home">Go Home</a>
-	<h1>Add a Book to your shelf!</h1>
+	<h1>Edit ${user.userName}</h1>
 	<div>
-		<form:form action="/add/book" method="post" modelAttribute="newBook">
-			<!-- Manually add in the session.user.id -->
-		    <form:hidden  path="user" value="${user.id}"/>
+		<form:form action="/edit/book/update/" method="post" modelAttribute="editBook">
+			
+		    <form:hidden  path="user" value="${book.id}"/><!-- Includes user.id to book.user_id -->
+ 		     
 		    <p>
 		        <form:label path="title">Title</form:label>
 		        <form:errors path="title"/>
-		        <form:input path="title"/>
+		        <form:input path="title" />
 		    </p>
 		    <p>
 		        <form:label path="author">Author</form:label>
@@ -39,6 +40,10 @@
 		    </p> 
 		    <input type="submit" value="Submit"/>
 		</form:form>
+		<form action="/delete/<c:out value="${book.id}"/>" method="post">
+	    	<input type="hidden" name="_method" value="delete">
+	    	<input type="submit" value="Delete">
+		</form>
 	</div>
 	
 </body>

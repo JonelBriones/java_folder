@@ -1,6 +1,7 @@
 package com.jonel.authentication.models;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
@@ -44,7 +47,29 @@ public class Book {
     @JoinColumn(name="user_id")
     private User user;
     
-    public Book() {
+    @ManyToMany(fetch=FetchType.LAZY)
+    	@JoinTable(
+    		name="borrows",
+    		joinColumns=@JoinColumn(name = "book_id"),
+    		inverseJoinColumns = @JoinColumn(name= "user_id"))
+    private List<User> borrows;
+    
+    
+    
+    public List<User> getBorrows() {
+		return borrows;
+	}
+    
+    
+    
+	public void setBorrows(List<User> borrows) {
+		this.borrows = borrows;
+	}
+
+
+
+
+	public Book() {
     }
 
 
@@ -106,32 +131,7 @@ public class Book {
 	}
 
 
-
-
-	public Date getCreatedAt() {
-		return createdAt;
-	}
-
-
-
-
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
-	}
-
-
-
-
-	public Date getUpdatedAt() {
-		return updatedAt;
-	}
-
-
-
-
-	public void setUpdatedAt(Date updatedAt) {
-		this.updatedAt = updatedAt;
-	}
+	
 
 
 
@@ -146,8 +146,6 @@ public class Book {
 	public void setUser(User user) {
 		this.user = user;
 	}
-
-
 
 
 	// other getters and setters removed for brevity

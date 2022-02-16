@@ -17,6 +17,7 @@
 	<h1>Welcome <c:out value="${user.userName}"/></h1>
 	<a href="/logout">Logout</a>
 	<a href="/add/<c:out value="${user.id}"/>">Add a book!</a>
+	<a href="/bookmarket">Go to The Book Broker!</a>
 	<div>
 		<table>
 			<thead>
@@ -33,7 +34,6 @@
 					<td><a href="/show/<c:out value="${book.id}"/>"><c:out value="${book.title}"/></a></td>
 					<td><c:out value="${book.author}"/></td>
 					<td><c:out value="${book.user.userName}"/></td>
-				
 				</tr>
 			</c:forEach> 
 		</table>
