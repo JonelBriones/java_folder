@@ -19,24 +19,24 @@
 	<a href="/home">Go Home</a>
 	<h1>Edit ${user.userName}</h1>
 	<div>
-		<form:form action="/edit/book/update/" method="post" modelAttribute="editBook">
-			
-		    <form:hidden  path="user" value="${book.id}"/><!-- Includes user.id to book.user_id -->
+		<form:form action="/edit/book/update" method="put" modelAttribute="editBook">
+ 			 <input type="hidden" name="_method" value="put">
+		    <form:hidden  path="user" value="${user.id}"/><!-- Includes user.id to book.user_id -->
  		     
 		    <p>
 		        <form:label path="title">Title</form:label>
 		        <form:errors path="title"/>
-		        <form:input path="title" />
+		        <form:input path="title" value="${book.title}"/>
 		    </p>
 		    <p>
 		        <form:label path="author">Author</form:label>
 		        <form:errors path="author"/>
-		        <form:input path="author"/>
+		        <form:input path="author" value="${book.author}"/>
 		    </p>
 		    <p>
 		        <form:label path="thought">My thoughts:</form:label>
 		        <form:errors path="thought"/>
-		        <form:textarea rows="5" cols="30" path="thought"/>
+		        <form:textarea rows="5" cols="30" path="thought" value="${book.thought}"/>
 		    </p> 
 		    <input type="submit" value="Submit"/>
 		</form:form>
@@ -45,6 +45,5 @@
 	    	<input type="submit" value="Delete">
 		</form>
 	</div>
-	
 </body>
 </html>

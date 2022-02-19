@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.jonel.authentication.models.Book;
 import com.jonel.authentication.models.User;
@@ -142,12 +143,12 @@ public class BookController {
 	
 		// Will render an edit form with the last saved data //
 		//PathVariable is to gather the book's data
-		@GetMapping("/edit/book/{user_id}")
-		public String edit(@PathVariable("user_id") Long id, HttpSession session, Model model) {
+		@GetMapping("/edit/book/{book_id}")
+		public String edit(@PathVariable("book_id") Long id, HttpSession session, Model model){
 			 if(session.getAttribute("userId")!=null) {
 				 User userId = userService.findUserById((Long)session.getAttribute("userId"));
 				 model.addAttribute("user",userId);
-				 model.addAttribute("editBook", bookService.findId(id));
+				 model.addAttribute("editBook", bookService.findId(id)); //this will pre populate the form//
 				 	return "editBook.jsp";
 			 }
 			 else {
@@ -156,7 +157,7 @@ public class BookController {
 		}
 		
 		// Update the form with validations //
-		@PostMapping("/edit/book/update")
+		@PutMapping("/edit/book/update")
 		public String update(@Valid @ModelAttribute("editBook") Book book,  BindingResult result, Model model) {
 			if (result.hasErrors() ) {
 				model.addAttribute("editBook",book);
@@ -169,8 +170,8 @@ public class BookController {
 		}
 		
 		// DELETE BOOK //
-		@DeleteMapping("/delete/{user_id}")
-		public String deleteFromHome(@PathVariable("user_id") Long id, HttpSession session, Model model) {
+		@DeleteMapping("/delete/{book_id}")
+		public String deleteFromHome(@PathVariable("book_id") Long id, HttpSession session, Model model) {
 			if(session.getAttribute("userId")!=null) {
 				 User userId = userService.findUserById((Long)session.getAttribute("userId"));
 				 model.addAttribute("user",userId);
