@@ -34,12 +34,12 @@
 		<p>
 			<form:label path="password">Password:</form:label>
 			<form:errors path="password"/>
-			<form:input path="password"/>
+			<form:password path="password"/>
 		</p>
 		<p>
 			<form:label path="confirm">Confirm Password:</form:label>
 			<form:errors path="confirm"/>
-			<form:input path="confirm"/>
+			<form:password path="confirm"/>
 		</p>
 		<input type="submit" value="Create User">
 	</form:form>
@@ -53,7 +53,7 @@
 		<p>
 			<form:label path="password">Password:</form:label>
 			<form:errors path="password"/>
-			<form:input path="password"/>
+			<form:password path="password"/>
 		</p>
 		<input type="submit" value="Login">
 	</form:form>

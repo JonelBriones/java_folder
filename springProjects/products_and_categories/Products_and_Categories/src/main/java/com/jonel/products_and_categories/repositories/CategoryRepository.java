@@ -18,7 +18,7 @@ public interface CategoryRepository extends CrudRepository<Category, Long> {
 
     List<Category> findAll();
     
-    List<Category> findByIdNotIn(List<Long> products);
+    List<Category> findByIdNotIn(List<Long> excludeProducts);
     
 
 }

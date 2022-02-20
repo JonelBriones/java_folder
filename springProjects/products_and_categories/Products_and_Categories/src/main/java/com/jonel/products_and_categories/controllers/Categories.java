@@ -80,24 +80,33 @@ public class Categories {
 			User userId  = userS.findId((Long)session.getAttribute("userId"));
 			model.addAttribute("user", userId);
 			model.addAttribute("category", categoryS.findId(id));
-			model.addAttribute("products", productS.all());
+			model.addAttribute("products", productS.all());	
 			
 			
 			// HOW TO MAKE A LIST OF PRODUCTS THAT ARE NOT YET ADDED INTO A CATEGORY / Vice Versa
-//			List<Long> availableProducts = new ArrayList<Long>();
-//			Category category = categoryS.findAllProducts(productS.all());
-//			availableProducts.add();
-//			List<Long> availableProducts = new ArrayList<Long>();
-//			for (Category catergoryProducts : catergoryProducts.getProducts().getId() {
-//				availableProducts.add(categoryProducts.getProducts().getId());
+//			Category category = categoryS.retrieve(id);
+//
+//			// Check  if category contains at least one product
+//			if( category.getProducts().size() > 0) {
+//				
+//				//Create a new List for the excluding products
+//				List<Long> excludeProducts = new ArrayList<Long>();
+//				// loops over each product
+//				for ( Category categoryProduct :category.getProducts() ) {
+//					
+//					//adds product to exclude if product is in category
+//					excludeProducts.add(category.getProducts().getId());
+//				}
+//				model.addAttribute("availableProducts", categoryS.productsAvailable(excludeProducts));
+//			} else {
+//				model.addAttribute("products", productS.all());	
 //			}
-//			model.addAttribute("productsCategory" ,categoryS.allExcluding(availableProducts));
-//		} else {
+			
+//			model.addAttribute("products", productS.all());	
 			return "showCategory.jsp";
-			} else {
-				return "redirect:/categories/all";
-			}
 		}
+		return "redirect:/products/all";
+	}
 	
 	@PostMapping("/add/product/{category_id}")
 	public String addProductToCategory(@PathVariable("category_id") Long id,@RequestParam("product_id")Long product_id,

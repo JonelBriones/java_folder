@@ -1,5 +1,6 @@
 package com.jonel.products_and_categories.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +31,8 @@ public class CategoryService {
 		return categoryRepo.findAll();
 	}
 	
-	//Passes all products that have not yet been place into a category
-	public List<Category>allExcluding(List<Long> excludedProductsId) {
+	//Passes all products that have been place into a category
+	public List<Category>productsAvailable(List<Long> excludedProductsId) {
 		
 		if (excludedProductsId.size() == 0) {
 			return this.all();
@@ -42,9 +43,6 @@ public class CategoryService {
 		
 	}
 	
-	public List<Category> productsAvailable(List<Long> product) {
-		return categoryRepo.findByIdNotIn(product);
-	}
 	public List<Category> findAllProducts(Product product) {
 		return categoryRepo.findAllByProducts(product);
 	}
@@ -56,6 +54,10 @@ public class CategoryService {
 
 	public Category findId(Long id) {
 		return categoryRepo.findById(id).orElse(null);
+	}
+	
+	public Category retrieve(Long id) {
+		return categoryRepo.findById(id).get();
 	}
 	
 	public Category update(Category category) {
