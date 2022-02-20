@@ -18,26 +18,34 @@
     <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-   <h1>All Products</h1>
 	<a href="/products/all">All Products</a>
 	<a href="/categories/all">All Categories</a>
 	<a href="/products/add">Add Products</a>
 	<a href="/categories/add">Add Category</a>
 	<a href="/user/logout">Logout</a>
 	<h1>${product.name}</h1>
+	<p>Added by ${product.user.userName}</p>
 		<div>
-			<h3>Categories:</h3>
-			<p>Add Category:</p>
-			<form:form action="/products/add/category" method="post" modelAttribute="products">
-				<form:select path="categories">
-					<c:forEach var="category" items="${categories}">
-						<form:option value="${category}" path="category">
-							${category.name}
-						</form:option>
+			<h3>Categories:${product.categories.size()}</h3>
+			<table>
+				<tr>
+					<c:forEach var="category" items="${product.categories}">
+					<hr>${category.name}
 					</c:forEach>
-					
-				</form:select>
-			</form:form>
+				</tr>
+			</table>	
+				
+			${products.categories.size()}
+			<form action="/products/add/category/${product.id}" method="post">
+				<select name="category_id">
+					<c:forEach var="category" items="${categories}">
+						<option value="${category.id}">
+							${category.name}
+						</option>
+					</c:forEach>
+				</select>
+				<input type="submit" value="Add to ${product.name}"/>
+			</form>
 		</div>
 
 

@@ -25,28 +25,29 @@
 <a href="/user/logout">Logout</a>
 	<h1>${category.name}</h1>
 	<p>Added by ${category.user.userName}</p>
-		<div>
-			<h3>Products:</h3>
-				<c:if test="${category.products.contains(categories_products)}">
-				<c:forEach var="product" items="${products}">
-					${product.name}
+			<h3>Products:${category.products.size()}</h3>
+			<table>
+				<tr>
+				<c:forEach var="product" items="${category.products}">
+				<hr>${product.name}
 				</c:forEach>
-				</c:if>
-				 ${category.products.size()}
-
+				</tr>
+			</table>
 				
-   			 <form action="/categories/add/product/${category.id}" method="post">
-				<form:select path="products">	
-					<c:if test="${!category.products.contains(category) }">
+			
+			<form action="/categories/add/product/${category.id}" method="post">
+				<select name="product_id">
+				<%-- <select name="requestparam"> --%>
+					
 					<c:forEach var="product" items="${products}">
-						<option value="${product.id}">
-							${product.name}
-						<option>
+								<option value="${product.id}">
+									${product.name}
+								</option>
 					</c:forEach>
-					</c:if>
-				</form:select> 
-				<input type="submit" value="Add Product to ${category.name}"/>
- 	 		</form>
-		</div>
+				</select>
+				<input type="submit" value="Add to ${category.name}"/>
+			</form>
+			
+		
 </body>
 </html>

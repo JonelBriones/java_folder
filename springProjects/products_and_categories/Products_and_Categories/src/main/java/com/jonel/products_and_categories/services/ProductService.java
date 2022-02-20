@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.jonel.products_and_categories.models.Category;
 import com.jonel.products_and_categories.models.Product;
 import com.jonel.products_and_categories.models.User;
 import com.jonel.products_and_categories.repositories.ProductRepository;
@@ -34,9 +35,9 @@ public class ProductService {
 		productRepo.deleteById(id);
 	}
 	
-//	public void addProductToCategory(Product product, Categories categories) {
-//		categories.g
-//		productRepo.save(product);
-//	}
-	
+	public void addCategory(Category category,Product product) {
+		List<Category> currentCategory = product.getCategories();
+		currentCategory.add(category);
+		productRepo.save(product);
+	}
 }

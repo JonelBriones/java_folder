@@ -31,8 +31,19 @@ public class CategoryService {
 	}
 	
 	//Passes all products that have not yet been place into a category
-	public List<Category>allExcluding(List<Long> products) {
-		return categoryRepo.findByIdNotIn(products);
+	public List<Category>allExcluding(List<Long> excludedProductsId) {
+		
+		if (excludedProductsId.size() == 0) {
+			return this.all();
+		}
+		else {
+			return categoryRepo.findByIdNotIn(excludedProductsId);
+		}
+		
+	}
+	
+	public List<Category> productsAvailable(List<Long> product) {
+		return categoryRepo.findByIdNotIn(product);
 	}
 	public List<Category> findAllProducts(Product product) {
 		return categoryRepo.findAllByProducts(product);
@@ -56,16 +67,6 @@ public class CategoryService {
 	}
 	
 	
-//	Add product to category
-//	public boolean addProduct(Long categoryId, Long productId) {
-//		Category category = this.findId(categoryId);
-//		Product product = productS.findId(productId);
-//		
-//		if(category == null || product == null) return false;
-//		
-//		CategoryProduct categoryProduct = categoryProductS.create(new CategoryProduct(category,product));
-//	}
-//	
 	public void addProduct(Category category,Product product) {
 		List<Product> currentProducts = category.getProducts();
 		currentProducts.add(product);
